@@ -1,10 +1,3 @@
-#wrap {
-	width: 80%;
-	overflow: auto;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 body {
 	text-align: center;
 }
@@ -15,10 +8,31 @@ h1 {
 	margin-bottom: 0px;
 } 
 
-#canvasSection {
-	width: 80%;
-	border: 2px solid;
-	border-color: #304959;
+aside {
+	margin-top : 10px;
+}
+
+div {
+	display: inline-block;
+	vertical-align: top;
+}
+
+ul {
+	display: inline;
+	-webkit-padding-start: 0px;
+}
+
+li {
+	display: inline;
+}
+
+footer {
+	margin-top: 70px;
+}
+
+#wrap {
+	width: 70%;
+	overflow: auto;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -26,20 +40,10 @@ h1 {
 canvas {
 	background-image: url('./img/subtle_dots.png');
 	cursor: crosshair;
-}
-
-aside {
-	margin-top : 10px;
-}
-
-div {
-	display: inline-block;
-}
-
-div.menu {
-	margin-left: 25px;
-	margin-right: 25px;
-	height: 50px !important;
+	border: 2px solid;
+	border-color: #304959;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 div#color_picker {
@@ -51,19 +55,17 @@ div#thickness_picker {
 	height: 25px !important;
 	position: relative;
 	top: -12px;
+	margin-top: 25px;
+}
+
+div.menu {
+	margin-left: 25px;
+	margin-right: 25px;
+	height: 50px !important;
 }
 
 ul.picker > li {
 	margin: 0px;
-}
-
-ul {
-	display: inline;
-	-webkit-padding-start: 0px;
-}
-
-li {
-	display: inline;
 }
 
 .button {
@@ -80,10 +82,6 @@ li {
 
 .visible {
 	visibility: visible;
-}
-
-footer {
-	margin-top: 70px;
 }
 
 .button {

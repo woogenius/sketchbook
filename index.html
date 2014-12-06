@@ -5,12 +5,6 @@
 <title>Sketch Book</title>
   <link rel="stylesheet" type="text/css" href="./style.css" />
   <script type="text/javascript" src="main.js">
-  function request() {
-    var request = new XMLHttpRequest();
-    request.open("GET", "../response.txt", false);
-    request.send(null);
-    console.log(request.responseText);
-  }
   </script>
 
 </head>
@@ -19,69 +13,63 @@
     <header>
       <h1><img src="img/title.png" alt=""></h1>
     </header>
-    <section id = "canvasSection">
-      <canvas id = "myCanvas"></canvas>
-    </section>
+    <canvas id = "myCanvas"></canvas>
     <aside id = "menu">
-      <div class = "menu">
-        <ul id = "left_menu">
-          <li class = "button"><img id = "new" src="img/ico_new.png"></li>
-          <li class = "button"><img id = "facebook" src="img/ico_facebook.png"></li>
-        </ul>
-      </div>
-      <div class = "menu">
-        <ul id = "tools">
-          <div id = "color_picker">
-            <li id = "color">
-              <ul class = "picker">
-                <li><img src="img/color1.png"></li>
-                <li><img src="img/color2.png"></li>
-                <li><img src="img/color3.png"></li>
-                <li><img src="img/color4.png"></li>
-                <li><img src="img/color5.png"></li>
-                <li><img src="img/color6.png"></li>
-                <li><img src="img/color7.png"></li>
-                <li id="color_plus"><img src="img/color_plus.png"></li>
-                <div id = "more_color" class = "hidden">
-                  <li><img src="img/color8.png"></li>
-                  <li><img src="img/color9.png"></li>
-                  <li><img src="img/color10.png"></li>
-                  <li><img src="img/color11.png"></li>
-                  <li><img src="img/color12.png"></li>
-                  <li><img src="img/color13.png"></li>
-                  <li><img src="img/color14.png"></li>
-                  <li><img src="img/color15.png"></li>
-                </div>
-              </ul>
-            </li>
-          </div>
-          <div id = "thickness_picker">
-            <li id = "thickness">
-              <ul class = "picker">
-                <li><img src="img/1px.png"></li>
-                <li><img src="img/2px.png"></li>
-                <li><img src="img/3px.png"></li>
-                <li><img src="img/4px.png"></li>
-                <li><img src="img/5px.png"></li>
-              </ul>
-            </li>
-          </div>
+      <ul id = "tools">
+        <div class = "menu">
+          <ul id = "left_menu">
+            <li class = "button"><img id = "new" src="img/ico_new.png"></li>
+            <a id="downlink" href="">
+              <li class = "button"><img id = "save" src="img/ico_save.png"></li></a>
+          </ul>
+        </div>
+        <div id = "color_picker">
+          <li id = "color">
+            <ul class = "picker">
+              <li><img src="img/color1.png"></li>
+              <li><img src="img/color2.png"></li>
+              <li><img src="img/color3.png"></li>
+              <li><img src="img/color4.png"></li>
+              <li><img src="img/color5.png"></li>
+              <li><img src="img/color6.png"></li>
+              <li><img src="img/color7.png"></li>
+              <li id="color_plus"><img src="img/color_plus.png"></li>
+              <div id = "more_color" class = "hidden">
+                <li><img src="img/color8.png"></li>
+                <li><img src="img/color9.png"></li>
+                <li><img src="img/color10.png"></li>
+                <li><img src="img/color11.png"></li>
+                <li><img src="img/color12.png"></li>
+                <li><img src="img/color13.png"></li>
+                <li><img src="img/color14.png"></li>
+                <li><img src="img/color15.png"></li>
+              </div>
+            </ul>
+          </li>
+        </div>
+        <div id = "thickness_picker">
+          <li id = "thickness">
+            <ul class = "picker">
+              <li><img src="img/1px.png"></li>
+              <li><img src="img/2px.png"></li>
+              <li><img src="img/3px.png"></li>
+              <li><img src="img/4px.png"></li>
+              <li><img src="img/5px.png"></li>
+            </ul>
+          </li>
+        </div>
+        <div class = "menu">
           <li class = "button"><img id = "pencil" src="img/ico_pen.png"></li>
-          <li class = "button"><img id = "paint" src="img/ico_paint.png"></li>     
           <li class = "button"><img id = "eraser" src="img/ico_eraser.png"></li>
-        </ul>
-      </div>
-      <div class = "menu">
-        <ul id = "right_menu">
-          <li class = "button"><img id = "previous" src="img/ico_previous.png"></li>
-          <li class = "button"><img id = "next" src="img/ico_next.png"></li>
-        </ul>
-      </div>
+        </div>
+      </ul>
+
     </aside>
     <footer>
       <img src="img/copyright.png">
     </footer>
   </div>
+  <a href="https://github.com/WooGenius/sketchbook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
   <!--
   구현하고 싶은 기능
   1. 페이스북에 공유(share 버튼)

@@ -1,12 +1,12 @@
 window.addEventListener('load', function(e) {
-
 	// init drawing tool
 	init(); 
-
 }, false);
 	
 // Drawing Tool START
 var canvas, context;
+var penThickness, penColor;
+var colorList;
 var tool;
 var tools = {};
 
@@ -16,19 +16,21 @@ function init() {
 	context = canvas.getContext('2d');
 
 	// set canvas size
-	var canvasSection = document.getElementById('canvasSection');
-	var canvasSection_style = getComputedStyle(canvasSection);
-	canvas.width = parseInt(canvasSection_style.width);
-	canvas.height = parseInt(canvasSection_style.width)*0.56;
-	debugger;
+	var windowWidth = window.outerWidth;
+	canvas.width = windowWidth*0.65;
+	canvas.height = canvas.width*0.56;
 
 	// make pencil tool instance
 	var pencilButton = document.getElementById('pencil');
 	pencilButton.addEventListener('click', ev_changeTool, false);
 
+	// make eraser tool instance
+	var eraserButton = document.getElementById('eraser');
+	eraserButton.addEventListener('click', ev_changeTool, false);
+
 	// for thickness picker
 	var thicknessPicker = document.getElementById('thickness').querySelector('ul');
-	thicknessPicker.addEventListener('click', ev_changeThickness, false);
+	thicknessPicker.addEventListener('click', ev_changeThickness, true);
 
 	// for color picker
 	requestAjax();
@@ -44,22 +46,34 @@ function init() {
 	colorPlusButton = document.getElementById('color_plus');
 	colorPlusButton.addEventListener('click', ev_showMoreColor, false);
 
+	// save button
+	saveButton = document.getElementById('save');
+	saveButton.addEventListener('click',ev_saveCanvas,false);
+	
 	// default
 	penThickness = 6;
 	penColor = "#304959"
 	tool = new tools['pencil']();
 
 	// add event listener
+	window.addEventListener('resize', resize_canvas, false);
 	canvas.addEventListener('mousedown', ev_canvas, false);
 	canvas.addEventListener('mousemove', ev_canvas, false);
 	canvas.addEventListener('mouseup', ev_canvas, false);
 	canvas.addEventListener('mouseout', ev_canvas, false);
 }
 
+// for resize canvas
+function resize_canvas(ev) {
+	var windowWidth = window.outerWidth;
+	canvas.width = windowWidth*0.65;
+	canvas.height = canvas.width*0.56;
+}
+
 // for changing tool
 function ev_changeTool(ev) {
 	if (tools[this.id]) {
-		tool = new tools[this.id]();gnh(ft)
+		tool = new tools[this.id]();
 	}
 }
 
@@ -74,6 +88,7 @@ function ev_canvas(ev) {
 // for change thickness
 function ev_changeThickness(ev) {
 	var targetUrl = ev.target.src;
+	debugger;
 	if (targetUrl) {
 	var targetThickness = targetUrl.substring(targetUrl.lastIndexOf("/")+1, targetUrl.lastIndexOf("."));
 	}
@@ -83,8 +98,8 @@ function ev_changeThickness(ev) {
 	}
 }
 
-// for request Ajax
-function requestAjax() {
+// for request Ajax and change color
+function requestAjax(ev) {
 	var request = new XMLHttpRequest();
 	request.open("GET", "./color.json", true);
 	request.send(null);
@@ -128,6 +143,59 @@ function ev_showMoreColor(ev) {		// using visibility
 		colorPlusButton.querySelector('img').src = colorPlusImg;	// change img button plus
 	}
 	colorPlusClicked = !colorPlusClicked;
+}
+
+function ev_saveCanvas() {
+	var can = document.getElementById('myCanvas');
+	var dataURL = can.toDataURL();
+	var saveBTN = document.getElementById('downlink');
+
+	saveBTN.href=dataURL;
+	saveBTN.download="myImage"; 
+
+	console.log("saved");
+	
+}
+
+tools.eraser = function () {
+	var tool = this;
+
+	this.mousedown = function (ev) {
+		// begin path and move context to start position
+		context.beginPath();
+		context.moveTo(startX, startY);
+		tool.started = true;
+	};
+
+	// when you release your mouse button
+	this.mouseup = function(ev) {
+		if (tool.started) {
+			tool.mousemove(ev);
+			tool.started = false;
+		}
+	};
+
+	// when you move out of canvas
+	this.mouseout = function(ev) {
+		if (tool.started) {
+			tool.mousemove(ev);
+			tool.started = false;
+		}
+	};
+
+	this.mousemove = function (ev) {
+		if (tool.started) {
+			var endX = ev.offsetX;
+			var endY = ev.offsetY;
+			context.globalCompositeOperation = 'destination-out';
+		    context.arc(endX, endY, 20, 0, Math.PI * 2, false);
+		    context.fill();
+		    context.restore();
+
+		    context.beginPath();
+			context.moveTo(startX, startY);	
+		}
+	}
 }
 
 // pencil tool
@@ -182,11 +250,13 @@ tools.pencil = function () {
 			} else{
 				i = i-4;
 			};
+			
 			// average length of last 5 length
 			var aLen = (len[0]+len[1]+len[2]+len[3]+len[4])/5;
 			// console.log(len[0], len[1], len[2], len[3], len[4], currLen);
 
 			// by using lineTo 
+			context.globalCompositeOperation = 'source-over';
 			context.lineWidth = setLineWidth(aLen);
             context.lineCap="round";
             context.lineJoin="round";

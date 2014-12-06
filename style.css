@@ -1,0 +1,103 @@
+#wrap {
+	width: 80%;
+	overflow: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+body {
+	text-align: center;
+}
+
+h1 {
+	font-size: 60px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+} 
+
+#canvasSection {
+	width: 80%;
+	border: 2px solid;
+	border-color: #304959;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+canvas {
+	background-image: url('./img/subtle_dots.png');
+	cursor: crosshair;
+}
+
+aside {
+	margin-top : 10px;
+}
+
+div {
+	display: inline-block;
+}
+
+div.menu {
+	margin-left: 25px;
+	margin-right: 25px;
+	height: 50px !important;
+}
+
+div#color_picker {
+	width: 107px !important;
+	height: 50px !important;
+}
+
+div#thickness_picker {
+	height: 25px !important;
+	position: relative;
+	top: -12px;
+}
+
+ul.picker > li {
+	margin: 0px;
+}
+
+ul {
+	display: inline;
+	-webkit-padding-start: 0px;
+}
+
+li {
+	display: inline;
+}
+
+.button {
+	cursor: pointer;
+}
+
+.picker li {
+	cursor: pointer;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}
+
+footer {
+	margin-top: 70px;
+}
+
+.button {
+	display: inline-block;
+	background-color: #304959;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.button > img {
+	margin: 5px;
+}
+
+.button:hover {
+  background: #d14e0c;
+}
